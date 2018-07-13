@@ -1,5 +1,6 @@
 package com.codecool.guestBook.Model;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -8,7 +9,6 @@ public interface DBConnectionInterface {
     String login = "czakero";
     String password = "misiejkoland18";
 
-    void connect() throws SQLException;
+    Connection connect() throws SQLException;
     void close() throws SQLException;
-    ResultSet executeQuery(String query) throws SQLException;
 }
