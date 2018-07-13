@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="scripts.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Index</title>
+</head>
+<body>
+<header class="header">
+    <h1>GUEST BOOK</h1>
+</header>
+<div class="entries">
+    <ul>
+        {% for entry in entries %}
+        <li>
+            <span> {{entry.getMessage()}}</span>
+            <span> {{entry.getName()}}</span>
+            <span> {{entry.getDate()}}</span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="form">
+    <form onkeyup="checkFields('inputs', 'submitButton')" method="POST">
+        <label for="name"></label>
+        <input type="text" class="inputs" id="name" name="name" placeholder="Enter you name">
+        <br>
+        <label for="message"></label>
+        <textarea name="message" class="inputs" id="message" cols="33" rows="10" placeholder="Enter your message" style="resize:none"></textarea>
+        <br>
+        <input type="submit" id="submitButton" value="Submit" disabled>
+    </form>
+</div>
+</body>
+</html>

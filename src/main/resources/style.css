@@ -1,0 +1,48 @@
+body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+}
+
+.header {
+    flex-basis: 100%;
+    text-align: center;
+}
+.entries {
+    flex-basis: 100%;
+    text-align: center;
+}
+.entries ul {
+    padding: 0;
+    list-style: none;
+
+}
+.entries ul li {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: cornflowerblue;
+}
+.entries ul li:nth-child(odd) { 
+    background-color: salmon;
+}
+
+.form {
+    flex-basis: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.form form {
+    flex-direction: column;
+    text-align: center;
+}
+.form input, .form textarea {
+    text-align: center;
+}
+.form * {
+    margin: 5px;
+}
