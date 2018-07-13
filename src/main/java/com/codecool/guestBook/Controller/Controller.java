@@ -1,64 +1,51 @@
-package com.codecool.guestBook.Controller;
-
-
-import com.codecool.guestBook.Model.DBConnection;
-
-import java.sql.SQLException;
-import java.util.Scanner;
-
-public class Controller {
-    private Scanner sc = new Scanner(System.in);
-    private boolean isRunning = true;
-    private static final String first_query = "SELECT addEntry('maciej', 'z klanu');";
-    private static final String second_query = "SELECT * FROM getEntries();";
-
-    private DBConnection c = new DBConnection();
-
-    public void start() throws SQLException {
-        while (isRunning) {
-            int option = getIntInput();
-            switch (option) {
-                case 1:
-                    try {
-                        c.connect();
-                        c.executeQuery(first_query);
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    } finally {
-                        c.close();
-                    }
-                    break;
-                case 2:
-                    try {
-                        c.connect();
-                        c.executeQuery(second_query);
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    } finally {
-                        c.close();
-                    }
-                    break;
-                case 0:
-                    isRunning = false;
-                default:
-                    System.out.println("There is no such option!");
-            }
-
-        }
-
-    }
-    private int getIntInput() {
-        int number;
-        do {
-            System.out.print("Choose option: ");
-            while (!sc.hasNextInt()) {
-                System.out.println("That's not a number!");
-                System.out.print("Choose option: ");
-                sc.next();
-            }
-            number = sc.nextInt();
-        } while (number <= 0);
-
-        return number;
-    }
-}
+//package com.codecool.guestBook.Controller;
+//
+//
+//import com.codecool.guestBook.DAO.EntryDAO;
+//import com.sun.net.httpserver.HttpExchange;
+//import com.sun.net.httpserver.HttpHandler;
+//
+//import java.io.BufferedReader;
+//import java.io.IOException;
+//import java.io.InputStreamReader;
+//import java.io.UnsupportedEncodingException;
+//import java.net.URLDecoder;
+//import java.util.HashMap;
+//import java.util.Map;
+//
+//public class Controller implements HttpHandler {
+//    private EntryDAO dao = new EntryDAO();
+//
+//    @Override
+//    public void handle(HttpExchange httpExchange) throws IOException {
+//        String response = "";
+//        String method = httpExchange.getRequestMethod();
+//
+//        if (method.equalsIgnoreCase("post")) {
+//            Map<String, String> inputs = getInputs(httpExchange);
+//            for (String key : inputs.keySet()) {
+//                System.out.println(inputs.get(key));
+//            }
+//
+//        }
+//    }
+//
+//    private Map<String, String> getInputs(HttpExchange httpExchange) throws IOException {
+//        InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "UTF-8");
+//        BufferedReader br = new BufferedReader(isr);
+//        String formData = br.readLine();
+//        return parseFormData(formData);
+//
+//    }
+//
+//    private Map<String, String> parseFormData(String formData) throws UnsupportedEncodingException {
+//        Map<String, String> map = new HashMap<>();
+//        String[] pairs = formData.split("&");
+//        for (String pair : pairs) {
+//            String[] key = pair.split("=");
+//            String value = new URLDecoder().decode(key[1], "UTF-8");
+//            map.put(key[0], value);
+//        }
+//        return map;
+//    }
+//}
